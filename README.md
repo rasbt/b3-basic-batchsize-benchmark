@@ -31,8 +31,8 @@ python main.py --num_epochs 10 --batch_size 127 --mixed_precision true
 
 ### Additional Resources
 
-- [Ross Wightman mentioning](https://twitter.com/wightmanr/status/1542917523556904960?s=20&t=96dUITuyaNJUfw1TWxDLng) that batch sizes of multiples of 8 might matter more for TPUs
-- [Nvidia's *Deep Learning Performance Documentation* on matrix multiplication](https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html) explaining the theoretical rational behind choosing batch sizes as multiples of 8 for tensor cores
+- [Ross Wightman mentioning](https://twitter.com/wightmanr/status/1542917523556904960?s=20&t=96dUITuyaNJUfw1TWxDLng) that it might matter more for TPUs
+- [Nvidia's Deep Learning Performance Documentation on matrix multiplication](https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html) explaining the theoretical rational behind choosing batch sizes as multiples of 8 for tensor cores
 
 
 
@@ -41,13 +41,21 @@ python main.py --num_epochs 10 --batch_size 127 --mixed_precision true
 
 
 
-| batch size | train time | inf. time | combined  | epochs | GPU  | mixed prec. |
-| ---------- | ---------- | --------- | --------- | ------ | ---- | ----------- |
-| 100        | 10.50 min  | 0.15 min  | 10.78 min | 10     | V100 | Yes         |
-| 127        | 9.80 min   | 0.15 min  | 10.08 min | 10     | V100 | Yes         |
-| 128        | 9.78 min   | 0.10 min  | 10.07 min | 10     | V100 | Yes         |
-| 129        | 9.92 min   | 0.15 min  | 10.20 min | 10     | V100 | Yes         |
-| 156        | 9.38 min   | 0.16 min  | 9.67 min  | 10     | V100 | Yes         |
+| batch size | train time | inf. time  | epochs | GPU  | mixed prec. |
+| ---------- | ---------- | --------- | ------ | ---- | ----------- |
+| 100        | 10.50 min  | 0.15 min  | 10     | V100 | Yes         |
+| 127        | 9.80 min   | 0.15 min  | 10     | V100 | Yes         |
+| 128        | 9.78 min   | 0.15 min  | 10     | V100 | Yes         |
+| 129        | 9.92 min   | 0.15 min  | 10     | V100 | Yes         |
+| 156        | 9.38 min   | 0.16 min  | 10     | V100 | Yes         |
+|            |            |           |        |      |             |
+| 511        | 8.74 min   | 0.17 min  | 10     | V100 | Yes         |
+| 512        | 8.71 min   | 0.17 min  | 10     | V100 | Yes         |
+| 513        | 8.72 min   | 0.17 min  | 10     | V100 | Yes         |
+
+
+
+
 
 
 
@@ -55,4 +63,5 @@ Note that this is all from one run each. To get more reliable stats, repeating t
 
 
 
-**Or in other words, do you have a batch size of 128 that you would like to run, but it doesn't fit into memory? It's probably okay to train that model with a batch size of 120 and 100 before scaling it down to 64** 😊.
+**Or in other words, do you have a batch size of 128 that you would like to run, but it doesn't fit into memory? It's probably okay to train that model with a batch size of 120 and 100 before scaling it down to 64**** 😊.
+
