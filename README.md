@@ -31,8 +31,8 @@ python main.py --num_epochs 10 --batch_size 127 --mixed_precision true
 
 ### Additional Resources
 
-- [Ross Wightman mentioning](https://twitter.com/wightmanr/status/1542917523556904960?s=20&t=96dUITuyaNJUfw1TWxDLng) that it might matter more for TPUs
-- [Nvidia's Deep Learning Performance Documentation on matrix multiplication](https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html) explaining the theoretical rational behind choosing batch sizes as multiples of 8 for tensor cores
+- [Ross Wightman mentioning](https://twitter.com/wightmanr/status/1542917523556904960?s=20&t=96dUITuyaNJUfw1TWxDLng) that batch sizes of multiples of 8 might matter more for TPUs
+- [Nvidia's *Deep Learning Performance Documentation* on matrix multiplication](https://docs.nvidia.com/deeplearning/performance/dl-performance-matrix-multiplication/index.html) explaining the theoretical rational behind choosing batch sizes as multiples of 8 for tensor cores
 
 
 
@@ -51,7 +51,8 @@ python main.py --num_epochs 10 --batch_size 127 --mixed_precision true
 
 
 
+Note that this is all from one run each. To get more reliable stats, repeating the runs many times and reporting the average + SD might be worthwhile. However, even from the numbers above, it is probably apparent that there is only a small but barely noticeable difference between 127, 128, and 129.
 
-Note that this is all from one run each. To get more reliable stats, it might be worthwhile repeating the runs many times and reporting the average + SD. However, even from the numbers above, it is probably apparant that there is only a small but barely noticeable difference between 127, 128, and 129.
 
-**Or in other words, do you have a batch size of 128 that you would like to run but it doesn't fit into memory? It's probably okay to train that model with a batch size of 120 and 100 before scaling it down to 64 😊.**
+
+**Or in other words, do you have a batch size of 128 that you would like to run, but it doesn't fit into memory? It's probably okay to train that model with a batch size of 120 and 100 before scaling it down to 64** 😊.
