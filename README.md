@@ -13,6 +13,7 @@ Right now, this benchmark is a [MobileNetV3 (large)](https://arxiv.org/abs/1905.
 **Step 1: Initial Setup**
 
 ```bash
+git clone https://github.com/rasbt/b3-basic-batchsize-benchmark.git
 conda create -n benchmark python=3.8
 conda activate benchmark
 pip install -r requirements.txt
