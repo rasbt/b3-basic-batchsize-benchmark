@@ -56,7 +56,19 @@ python main.py --num_epochs 10 --batch_size 127 --mixed_precision true
 | 513        | 8.72 min   | 0.17 min  | 10     | V100 | Yes         |
 
 
+Below, I trained the same neural network using 4 V100 GPUs with the distributed data parallel strategy:
 
+```bash
+python main.py --num_epochs 10 --batch_size 255 --mixed_precision true --num_workers 4 --strategy ddp
+```
+
+| batch size | train time | epochs | GPU    | mixed prec. |
+| ---------- | ---------- | ------ | ------ | ----------- |
+| 255        |  2.95 min  |  10    | 4xV100 | Yes         |
+| 256        |  2.87 min  |  10    | 4xV100 | Yes         |
+| 257        |  2.86 min  |  10    | 4xV100 | Yes         |
+
+Note that I removed the inference time (here: evaluation on the test set) from this table, because in practice, you would still use a single V100 for inference purposes. 
 
 
 
@@ -65,5 +77,5 @@ Note that this is all from one run each. To get more reliable stats, repeating t
 
 
 
-**Or in other words, do you have a batch size of 128 that you would like to run, but it doesn't fit into memory? It's probably okay to train that model with a batch size of 120 and 100 before scaling it down to 64**** 😊.
+**Or in other words, do you have a batch size of 128 that you would like to run, but it doesn't fit into memory? It's probably okay to train that model with a batch size of 120 and 100 before scaling it down to 64** 😊.
 
