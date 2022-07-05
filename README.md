@@ -6,7 +6,7 @@ A quick benchmark with different batch sizes that was prompted by the discussion
 
 
 
-Right now, this benchmark is a [MobileNetV3 (large)](https://arxiv.org/abs/1905.02244). You can run it as follows:
+Right now, this benchmark is a [MobileNetV3 (large)](https://arxiv.org/abs/1905.02244) on CIFAR-10 (the images are resized to 224 to reach proper GPU utilization). You can run it as follows:
 
 
 
